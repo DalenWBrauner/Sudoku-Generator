@@ -149,6 +149,7 @@ class Sudoku(Matrix):
         self.M = {}
         self.row = []
         self.col = []
+        self.nCols = self.nRows = 9
         
         # The row/col lists are given 9 sublists ahead of time.
         for w in xrange(9):
