@@ -1,0 +1,52 @@
+Currently, we have a mostly written, semi-functional Sudoku object.
+Not all of the sector functionality is there, however.
+
+NEXT IMMEDIATE ASSIGNMENT:
+The following functions need sector functionality:
+def setrow(self,r,values)
+def setcol(self,c,values)
+def swaprow(self,r1,r2)
+def swapcol(self,c1,c2)
+
+The following are possible functions to be added:
+def setsec(self,s,values)
+def swapsec(self,s1,s2)
+
+
+CURRENT INTENDED FILE LAYOUT:
+Puzzle.py
+	will hold our Sudoku object and all of its definitions, etc.
+Generator.py
+	will generate Sudoku object puzzles via the following functions:
+	def main()
+	def Puzzle_Unsolver(puzzle,difficulty)
+	def Column_Shuffler(puzzle)
+		def Shuffle_Columns(puzzle,listOfColumns)
+	def Sample_Scrambler()
+GUI.py
+	will be any and all gui interface, I guess
+Playable.py
+	will be the part of the project that goes to making this a playable game
+	
+	
+FUN FACT:
+The sudoku puzzle generation process is as follows:
+	Start with a very specific sample puzzle
+		Current number of possible puzzles: 1
+	Scramble the following list: [1,2,3,4,5,6,7,8,9]
+	So you get something like:   [3,1,7,4,6,9,8,2,5]
+	Replace all 1s in the specific sample puzzle with 3s.
+	Replace all 2s in the specific sample puzzle with 1s.
+	Replace all 3s in the specific sample puzzle with 7s. etc.
+		Number of possible replacement lists:
+		9! = 9*8*7*6*5*4*3*2*1 = 362,880
+		Current number of possible puzzles: 362,880
+	Shuffle the columns of the puzzle s.t. the puzzle is still valid.
+		Number of possible results from shuffling:
+		6 different outcomes from shuffling the first 3 columns.
+		6 different outcomes from shuffling the second 3 columns.
+		6 different outcomes from shuffling the third 3 columns.
+		6 different outcomes from shuffling the 3 triplets of columns.
+		6^4 = 6*6*6*6 = 1296
+		9! * 6^4 = 470,292,480
+		Final number of possible puzzles: 470,292,480
