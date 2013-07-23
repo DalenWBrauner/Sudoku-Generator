@@ -2,7 +2,7 @@ Currently, we have a mostly written, semi-functional Sudoku object.
 Not all of the sector functionality is there, however.
 
 NEXT IMMEDIATE ASSIGNMENT:
-Test, test, test!
+Start Generator.py!
 
 CURRENT INTENDED FILE LAYOUT:
 Puzzle.py
