@@ -111,65 +111,37 @@ class Sudoku(object):
 
     def setrow(self,r,values):       
         if len(values) != 9:
-            raise TypeError("Columns require exactly 9 values.")
+            raise TypeError("Rows require exactly 9 values.")
         
-        for n in xrange(9):
-            self.M[str(r)+","+str(n)] = values[n]
-            self.row[r][n] = values[n]
-            self.col[n][r] = values[n]
-            ### NEEDS SECTOR FUNCTIONALITY
+        for c in xrange(9):
+            self.M[str(r)+","+str(c)] = values[c]
+            self.row[r][c] = values[c]
+            self.col[c][r] = values[c]
+            self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = values[c]
 
     def setcol(self,c,values):
         if len(values) != 9:
             raise TypeError("Columns require exactly 9 values.")
         
-        for n in xrange(9):
-            self.M[str(n)+","+str(c)] = values[n]
-            self.row[n][c] = values[n]
-            self.col[c][n] = values[n]
-            ### NEEDS SECTOR FUNCTIONALITY
+        for r in xrange(9):
+            self.M[str(r)+","+str(c)] = values[r]
+            self.row[r][c] = values[r]
+            self.col[c][r] = values[r]
+            self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = values[c]
 
     def swaprow(self,r1,r2):
         """Swaps row r1 with row r2."""
-        # Changes the values of M appropriately
-        temp = self.row[r1]
-        self.row[r1] = self.row[r2]
-        self.row[r2] = temp
-        
-        # Changes the values of the rows appropriately
-        for g in xrange(len(self.row[r1])):
-            temp = self.M[str(r1)+","+str(g)]
-            self.M[str(r1)+","+str(g)] = self.M[str(r2)+","+str(g)]
-            self.M[str(r2)+","+str(g)] = temp
-            
-        # Changes the values of the columns appropriately
-        for col in self.col:
-            temp = col[r1]
-            col[r1] = col[r2]
-            col[r2] = temp
-
-        ### NEEDS SECTOR FUNCTIONALITY
+        r1NEW = self.row[r2]
+        r2NEW = self.row[r1]
+        self.setrow(r1,r1NEW)
+        self.setrow(r2,r2NEW)
 
     def swapcol(self,c1,c2):
         """Swaps col c1 with col c2."""
-        # Changes the values of M appropriately
-        temp = self.col[c1]
-        self.col[c1] = self.col[c2]
-        self.col[c2] = temp
-        
-        # Changes the values of the columns appropriately
-        for g in xrange(len(self.col[c1])):
-            temp = self.M[str(g)+","+str(c1)]
-            self.M[str(g)+","+str(c1)] = self.M[str(g)+","+str(c2)]
-            self.M[str(g)+","+str(c2)] = temp
-            
-        # Changes the values of the rows appropriately
-        for row in self.row:
-            temp = row[c1]
-            row[c1] = row[c2]
-            row[c2] = temp
-
-        ### NEEDS SECTOR FUNCTIONALITY
+        c1NEW = self.col[c2]
+        c2NEW = self.col[c1]
+        self.setcol(c1,c1NEW)
+        self.setcol(c2,c2NEW)
 
 #
 ##

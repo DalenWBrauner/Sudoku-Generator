@@ -2,16 +2,7 @@ Currently, we have a mostly written, semi-functional Sudoku object.
 Not all of the sector functionality is there, however.
 
 NEXT IMMEDIATE ASSIGNMENT:
-The following functions need sector functionality:
-def setrow(self,r,values)
-def setcol(self,c,values)
-def swaprow(self,r1,r2)
-def swapcol(self,c1,c2)
-
-The following are possible functions to be added:
-def setsec(self,s,values)
-def swapsec(self,s1,s2)
-
+Test, test, test!
 
 CURRENT INTENDED FILE LAYOUT:
 Puzzle.py
