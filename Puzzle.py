@@ -2,8 +2,7 @@
 [Name]              Puzzle.py
 [Author]            Dalen W. Brauner
 [DLM]               7/22/2013   10:04 PM
-[Purpose]           To create friendly Sudoku objects s.t. Sudoku Puzzles can easily be
-                    generated and manipulated.
+[Purpose]           To allow for the creation and manipulation of Sudoku Puzzles.
 
                     
 Here are some fun notes about sectors:
@@ -153,6 +152,13 @@ class Sudoku(object):
         for item in self.col[c2]:   newc1.append(item)    
         self.setcol(c1,newc1)
         self.setcol(c2,newc2)
+
+    def Mass_Replacement(self,replacements):
+        for c in xrange(9):
+            for r in xrange(9):
+                self.setvalue(r,c,replacements[(self.M[str(r)+","+str(c)])-1])
+            
+            
 
 #
 ##
