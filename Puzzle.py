@@ -1,4 +1,11 @@
 """
+[Name]              Puzzle.py
+[Author]            Dalen W. Brauner
+[DLM]               7/22/2013   10:04 PM
+[Purpose]           To create friendly Sudoku objects s.t. Sudoku Puzzles can easily be
+                    generated and manipulated.
+
+                    
 Here are some fun notes about sectors:
     Given a row number r, and column number c:
     (r/3)*3 + c/3
@@ -127,21 +134,25 @@ class Sudoku(object):
             self.M[str(r)+","+str(c)] = values[r]
             self.row[r][c] = values[r]
             self.col[c][r] = values[r]
-            self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = values[c]
+            self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = values[r]
 
     def swaprow(self,r1,r2):
         """Swaps row r1 with row r2."""
-        r1NEW = self.row[r2]
-        r2NEW = self.row[r1]
-        self.setrow(r1,r1NEW)
-        self.setrow(r2,r2NEW)
+        newr1 = []
+        newr2 = []
+        for item in self.row[r1]:   newr2.append(item)
+        for item in self.row[r2]:   newr1.append(item)    
+        self.setrow(r1,newr1)
+        self.setrow(r2,newr2)
 
     def swapcol(self,c1,c2):
         """Swaps col c1 with col c2."""
-        c1NEW = self.col[c2]
-        c2NEW = self.col[c1]
-        self.setcol(c1,c1NEW)
-        self.setcol(c2,c2NEW)
+        newc1 = []
+        newc2 = []
+        for item in self.col[c1]:   newc2.append(item)
+        for item in self.col[c2]:   newc1.append(item)    
+        self.setcol(c1,newc1)
+        self.setcol(c2,newc2)
 
 #
 ##
