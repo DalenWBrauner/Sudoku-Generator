@@ -23,7 +23,7 @@ def any_duplicates(theList):
 ##
 ### Sudoku object ahoy!
             
-class Sudoku(Object):
+class Sudoku(object):
     def __init__(self, values):
         # Checks if there are enough values.
         if 81 != len(values):
@@ -88,11 +88,17 @@ class Sudoku(Object):
         """Returns True if the puzzle is a valid Sudoku puzzle, otherwise
         Returns False."""
         for row in self.row:
-            if any_duplicates(row):     return False
+            if any_duplicates(row):
+                print "Duplicates in row",row
+                return False
         for col in self.col:
-            if any_duplicates(col):     return False
+            if any_duplicates(col):
+                print "Duplicates in col",col
+                return False
         for sec in self.sec:
-            if any_duplicates(sec):     return False    
+            if any_duplicates(sec):
+                print "Duplicates in sec",sec
+                return False    
         return True
 
     def setvalue(self,r,c,value):
@@ -107,7 +113,7 @@ class Sudoku(Object):
         if len(values) != 9:
             raise TypeError("Columns require exactly 9 values.")
         
-        for n in xrange(self.nCols):
+        for n in xrange(9):
             self.M[str(r)+","+str(n)] = values[n]
             self.row[r][n] = values[n]
             self.col[n][r] = values[n]
@@ -117,7 +123,7 @@ class Sudoku(Object):
         if len(values) != 9:
             raise TypeError("Columns require exactly 9 values.")
         
-        for n in xrange(self.nRows):
+        for n in xrange(9):
             self.M[str(n)+","+str(c)] = values[n]
             self.row[n][c] = values[n]
             self.col[c][n] = values[n]
