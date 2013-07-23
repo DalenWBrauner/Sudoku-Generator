@@ -154,6 +154,7 @@ class Sudoku(object):
         self.setcol(c2,newc2)
 
     def Mass_Replacement(self,replacements):
+        """Replaces all 1s with the first value in the list, all 2s with the second, etc."""
         for c in xrange(9):
             for r in xrange(9):
                 self.setvalue(r,c,replacements[(self.M[str(r)+","+str(c)])-1])
