@@ -19,12 +19,12 @@ Here are some fun notes about sectors:
 ### yet are not exclusive to them.
 
 def any_duplicates(theList):
-            """Checks if there are any duplicates in a list."""
-            for A in xrange(len(theList)):
-                for B in xrange(A+1,len(theList)):
-                    if theList[A] == theList[B]:
-                        return True
-            return False
+    """Checks if there are any duplicates in a list."""
+    d = {}
+    for item in theList:
+        if not d.has_key(item):     d[item] = ""
+        else:                       return True
+    return False
 #
 ##
 ### Sudoku object ahoy!
