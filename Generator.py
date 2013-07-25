@@ -22,12 +22,10 @@ def Generate(num):
 def Nine_Factorial():
     """Creates a random Sudoku Puzzle with up to Nine Factorial (9!) possible combinations."""
 
-    # Sample puzzle from which all puzzles are generated
-#    Puzz = [1,4,7,2,5,8,3,6,9,5,2,8,6,3,9,7,4,1,6,9,3,7,1,4,8,2,5,4,7,1,5,8,2,6,9,3,8,5,2,9,\
-#            6,3,1,7,4,9,3,6,1,4,7,2,5,8,7,1,4,8,2,5,9,3,6,2,8,5,3,9,6,4,1,7,3,6,9,4,7,1,5,8,2]
-    Puzz = [2,4,8,3,9,5,7,1,6,5,7,1,6,2,8,3,4,9,9,3,6,7,4,1,5,8,2,6,8,2,5,3,9,1,7,4,3,5,9,1,\
-            7,4,6,2,8,7,1,4,8,6,2,9,5,3,8,6,3,4,1,7,2,9,5,1,9,5,2,8,6,4,3,7,4,2,7,9,5,3,8,6,1]
-    Puzzle = Sudoku(Puzz)
+    # Seed puzzle from which all puzzles are generated
+    Seed = [9,8,6,7,3,1,4,5,2,2,7,3,5,4,8,9,1,6,5,1,4,9,2,6,3,7,8,4,6,5,2,8,7,1,3,9,1,2,8,3,\
+            5,9,6,4,7,7,3,9,6,1,4,2,8,5,6,4,2,8,7,3,5,9,1,8,9,1,4,6,5,7,2,3,3,5,7,1,9,2,8,6,4]
+    Puzzle = Sudoku(Seed)
 
     # Randomly generates a list for Mass_Replacement
     lst = [1,2,3,4,5,6,7,8,9]
