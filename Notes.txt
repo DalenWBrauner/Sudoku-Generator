@@ -1,45 +1,46 @@
-Okay, so we have functional Sudoku Objects,
-and working functions Nine_Factorial and Column_Shuffler.
-This means we are now successfully generating Answer Sheets.
-Unfortunately, the pattern I thought I stamped out is still there.
+Alright, folks, we're shaking things up again. But that's okay; we're only reshaping the
+future. Nothing that has already been accomplished will change, or be destroyed. All of
+your precious work shall be kept orderly, and perserved. So rest easy, my friends.
+What's changed is how we're going to take what we've built and let it grow. We've learned
+that what we have works well on its own, as a basic output of Answer Keys stored inside
+neatly-crafted Sudoku objects. Which is great; why bog it down more than it needs to be?
 
-NEXT IMMEDIATE ASSIGNMENT:
-Hunt for an answer sheet without that pattern.
+Instead, we're going to turn Generator.py into Answer_Generator.py, and so we're just
+going to scrap all of the main() crap that's in it now. All we're doing is scrapping what
+we always knew we would scrap, just a little bit early. Now we're going to move onto a
+product known as Puzzle_Unsolver.py, and that's going to take the we Answer Key we ever-
+so-nicely wrapped up for it already from our Answer Key generating factory and make it
+into an object that a casual user can see and attempt to solve.
+We may even introduce another object, so that Answer Keys and Unsolved Puzzles can be
+kept seperately. (This is useful for a variety of reasons that seem obvious to me,
+chiefly the one where a user wants to see whether or not they actually solved their
+puzzle correctly.)
 
-In case you're wondering "What pattern?", allow me to explain.
-Suppose the following is a sector:
-[ 7 5 8 ]
-[ 1 3 6 ]
-[ 9 4 2 ]
-It's possible/likely that the next sector's rows will also contain
-some combination of [7,5,8] some combination of [1,3,6], and some
-combination of [9,4,2], such as:
-[ 8 7 5 ]
-[ 2 9 4 ]
-[ 6 1 3 ]
-or:
-[ 4 2 9 ]
-[ 3 6 1 ]
-[ 5 8 7 ]
-Any player privvy to this knowledge can use this to his or her
-advantage, by noting that a 3 is always accompanied by a 1 and a 6.
-This NEEDS to be stamped out promptly.
+I think this change will really impact the modularity of the project in an extremeley
+positive way, which is something I really value. Being able to go back and to edit the
+code with minimal effort is _very_important_ to me and I intend to stick to that.
 
 CURRENT INTENDED FILE LAYOUT:
-Puzzle.py
-	will hold our Sudoku object and all of its definitions, etc.
-Generator.py
-	will generate Sudoku object puzzles via the following functions:
-	def main()
-	def Puzzle_Unsolver(puzzle,difficulty)
-	def Column_Shuffler(puzzle)
-		def Shuffle_Columns(puzzle,listOfColumns)
-	def Sample_Scrambler()
-GUI.py
-	will be any and all gui interface, I guess
-Playable.py
-	will be the part of the project that goes to making this a playable game
-	
+FINISHED:
+	Puzzle.py
+		Holds a functional Sudoku object.
+	Answer_Generator.py
+		Generates answer keys to Sudoku puzzles.
+		def Column_Shuffler(puzzle)
+			def Shuffle_Columns(puzzle,listOfColumns)
+		def Sample_Scrambler()
+IN PROGRESS:	
+	Puzzle_Unsolver.py
+		will take existing Answer Keys and creates a solvable puzzle
+THE FUTURE:	
+	GUI.py
+		will be any and all gui interface, I guess
+	Playable.py
+		will be the part of the project that goes to making this a playable game
+
+NEXT IMMEDIATE ASSIGNMENT:
+
+
 	
 FUN FACT:
 The sudoku puzzle generation process is as follows:
