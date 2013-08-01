@@ -1,23 +1,16 @@
 """
-[Name]          Generator.py
+[Name]          Answer_Generator.py
 [Author]        Dalen W. Brauner
-[DLM]           723/2013    2:11 PM
-[Purpose]       To create friendly Sudoku objects s.t. Sudoku Puzzles can easily be generated
-                and manipulated.
+[DLM]           8/1/2013    4:00 PM
+[Purpose]       To randomly generate answer sheets for Sudoku Puzzles when
+                prompted with Generate().
 """
 from Puzzle import Sudoku
 from random import randint
 
-def main():
-    num = "This is a unique sentence the user is unlikely to input."
-    while (type(num) != int) or (not (-1 < num < 82)):
-        if num != "This is a unique sentence the user is unlikely to input.":
-            print "Please only enter integers 0-81."
-        num = input("How many boxes would you like omitted?\n40 = Easy, 55 = Normal, 70 = Hard\n")
-    return Generate(num)
-
-def Generate(num):
-    return Puzzle_Unsolver(Column_Shuffler(Nine_Factorial()),num)
+def Generate():
+    """Call this, an a randomly generated Answer Sheet shall be returned."""
+    return Column_Shuffler(Nine_Factorial())
 
 def Nine_Factorial():
     """Creates a random Sudoku Puzzle with up to Nine Factorial (9!) possible combinations."""
@@ -79,11 +72,3 @@ def Column_Shuffler(Puzzle):
         return Puzzle
     else:
         print "Column_Shuffler error! Puzzle not valid after replacement."
-
-def Puzzle_Unsolver(Puzzle,num):
-    print "Puzzle_Unsolver"
-    return Puzzle
-
-while True:
-    aPuzzle = main()
-    print aPuzzle
