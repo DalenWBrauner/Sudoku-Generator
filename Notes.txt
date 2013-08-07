@@ -1,25 +1,11 @@
-Alright, folks, we're shaking things up again. But that's okay; we're only reshaping the
-future. Nothing that has already been accomplished will change, or be destroyed. All of
-your precious work shall be kept orderly, and perserved. So rest easy, my friends.
-What's changed is how we're going to take what we've built and let it grow. We've learned
-that what we have works well on its own, as a basic output of Answer Keys stored inside
-neatly-crafted Sudoku objects. Which is great; why bog it down more than it needs to be?
-
-Instead, we're going to turn Generator.py into Answer_Generator.py, and so we're just
-going to scrap all of the main() crap that's in it now. All we're doing is scrapping what
-we always knew we would scrap, just a little bit early. Now we're going to move onto a
-product known as Puzzle_Unsolver.py, and that's going to take the we Answer Key we ever-
-so-nicely wrapped up for it already from our Answer Key generating factory and make it
-into an object that a casual user can see and attempt to solve.
-We may even introduce another object, so that Answer Keys and Unsolved Puzzles can be
-kept seperately. (This is useful for a variety of reasons that seem obvious to me,
-chiefly the one where a user wants to see whether or not they actually solved their
-puzzle correctly.)
-
-I think this change will really impact the modularity of the project in an extremeley
-positive way, which is something I really value. Being able to go back and to edit the
-code with minimal effort is _very_important_ to me and I intend to stick to that.
-
+Okay, so it works. But I don't like it.
+Maybe I'm just one of those guys that wants to keep adding and adding and adding and adding and adding
+until it's something way out of control, but I'd like to think I just
+want to improve puzzle quality and usability, and maybe even do a
+little quality control; make the program run more efficiently. It's
+pretty ugly where it stands now, I would think. After all, I DID just
+implement the first solution to each problem I thought of, and either
+tweaked them until they worked or go with a second solution.
 CURRENT INTENDED FILE LAYOUT:
 FINISHED:
 	Puzzle.py
@@ -29,9 +15,9 @@ FINISHED:
 		def Column_Shuffler(puzzle)
 			def Shuffle_Columns(puzzle,listOfColumns)
 		def Nine_Factorial()
-IN PROGRESS:	
 	Answer_Unsolver.py
-		will take existing Answer Keys and creates a solvable puzzle
+IN PROGRESS:	
+	???
 THE FUTURE:	
 	GUI.py
 		will be any and all gui interface, I guess
@@ -39,7 +25,7 @@ THE FUTURE:
 		will be the part of the project that goes to making this a playable game
 
 NEXT IMMEDIATE ASSIGNMENT:
-FINISH HIM
+???
 
 	
 FUN FACT:
