@@ -9,30 +9,28 @@ from Puzzle import Sudoku
 import Answer_Generator
 from random import randint
 
-# I'll be honest, I'm about to do this the cheap and easy way.
-# I WILL have to redo all of this if I continue writing this program;
-# however, I just want to get this done for now.
-
 def main():
     """Asks the user for the number of numbers they'd like to be
     omitted from their Sudoku Puzzle, then calls functions to generate a
     puzzle at random, omit that many, and then return it to the user."""
+    
+    print "How many boxes would you like missing from your puzzle?"
     while True:
-        print "How many boxes would you like missing from your puzzle?"
         print "To quit, enter 81."
         Omissions = input("")
-            while type(Omissions) != int or (not -1 < Omissions < 82):
-                print "Sorry, you need to enter a number from 0 to 81."
-                print "How many boxes would you like missing from your puzzle?"
-                print "To quit, enter 81."
-                Omissions = input("")
-            if Omissions == 0:
-                print "Oh, you'd like an answer sheet? Here you go!"
-            elif Omissions == 81:
-                print "Oh, you must be done! We hope you enjoyed the puzzles!"
-                return
-    Puzzle = Unsolve(Generate(),Omissions)
-    print Puzzle
+        while type(Omissions) != int or (not -1 < Omissions < 82):
+            print "Sorry, you need to enter a number from 0 to 81."
+            print "How many boxes would you like missing from your puzzle?"
+            print "To quit, enter 81."
+            Omissions = input("")
+        if Omissions == 0:
+            print "Oh, you'd like an answer sheet? Here you go!"
+        elif Omissions == 81:
+            print "Oh, you must be done! We hope you enjoyed the puzzles!"
+            return
+        Puzzle = Unsolve(Answer_Generator.Generate(),Omissions)
+        print Puzzle
+        print "How many boxes would you like missing from your next puzzle?"
 
 def Unsolve(Puzzle,boxes):
     """Given an answer key and a number of boxes, returns a puzzle missing
@@ -44,17 +42,104 @@ def Unsolve(Puzzle,boxes):
 
     # Now to remove all n-1 others:
     for b in xrange(boxes-1):
-        # We first randomly choose whether to omit a box in the same Row,
-        # Column or Section (rcs).
-        # Then we choose which entry from the row/col/sec to omit (n).
-        rcs = randint(0,2)
-        n   = randint(0,8)
-        if   rcs == 0:
-            c = n
-        elif rcs == 1:
-            r = n
-        else:
-            # I'll figure this out later
-        # Actually fuck, this won't work at all.
         
-        Puzzle.setvalue(r,c,' ')
+        # We first pick whether to omit a box from the same row, col or sec.
+        rcs = randint(0,2)
+
+        # We keep trying to omit a box until we succeed.
+        NoSuccess = True
+        while NoSuccess:
+        
+            # Try to omit a box. If you succeed, break out of the loop.
+            try:
+                if    rcs == 0:     (r,c) = omit_f_row(Puzzle,r)
+                elif  rcs == 1:     (r,c) = omit_f_col(Puzzle,c)
+                else:               (r,c) = omit_f_sec(Puzzle,r,c)
+                NoSuccess = False
+            
+            # If omitting fails, incriment rcs by 1 to try something different.
+            except ValueError:
+                rcs = (rcs + 1)%3
+
+                #...and try again.
+                try:
+                    if    rcs == 0:     (r,c) = omit_f_row(Puzzle,r)
+                    elif  rcs == 1:     (r,c) = omit_f_col(Puzzle,c)
+                    else:               (r,c) = omit_f_sec(Puzzle,r,c)
+                    NoSuccess = False
+
+                # If it fails again, incriment rcs one last time...
+                except ValueError:
+                    rcs = (rcs +1)%3
+                    try:
+                        if    rcs == 0:     (r,c) = omit_f_row(Puzzle,r)
+                        elif  rcs == 1:     (r,c) = omit_f_col(Puzzle,c)
+                        else:               (r,c) = omit_f_sec(Puzzle,r,c)
+                        NoSuccess = False
+
+                    # If THAT doesn't work,
+                    # let's try a different box and start over.
+                    except ValueError:
+                        r = (r+1)%9
+                        c = (c+1)%9
+    return Puzzle
+
+def omit_f_row(Puzzle,r):
+    """Omits a random nonempty value from the row provided and returns the omitted
+    value's location."""    
+    # Creates a list with the positions of all nonempty values in the row
+    nonempty = []
+    for v in xrange(9):
+        if Puzzle.row[r][v] != ' ':
+            nonempty.append(v)
+            
+    # Selects a random nonempty value in the row
+    try:                c = nonempty[randint(0,len(nonempty)-1)]
+    except ValueError:  raise ValueError("Nothing left to omit from row.")
+    
+    # Omits that value from the row, and returns value's the row and column
+    Puzzle.setvalue(r,c,' ')
+    return (r,c)
+
+
+def omit_f_col(Puzzle,c):
+    """Omits a random nonempty value from the column provided and returns the omitted
+    value's location."""
+    # Creates a list with the positions of all nonempty values in the column
+    nonempty = []
+    for v in xrange(9):
+        if Puzzle.col[c][v] != ' ':
+            nonempty.append(v)
+            
+    # Selects a random nonempty value in the column
+    try:                r = nonempty[randint(0,len(nonempty)-1)]
+    except ValueError:  raise ValueError("Nothing left to omit from row.")
+    
+    # Omits that value from the column, and returns value's the row and column
+    Puzzle.setvalue(r,c,' ')
+    return (r,c)
+    
+
+def omit_f_sec(Puzzle,r,c):
+    """Omits a random nonempty value from the sector provided and returns the omitted
+    value's location."""
+    # The code is largely the same, comments observe differences
+    nonempty = []
+    index = 0                           # index being the position within the sector
+    s = (r/3)*3 + c/3                   # s being the sector the values are in
+    for value in Puzzle.sec[s]:
+        if value != ' ':
+            nonempty.append(index)      # i.e. we append the positions if they are nonempty
+        index += 1
+    try:
+        p = nonempty[randint(0,len(nonempty)-1)]    # p being the position within the sector
+    except ValueError:
+        raise ValueError("Nothing left to omit from row.")
+
+    # Calculates the row and column of the new value
+    r = (s/3)*3 + p/3
+    c = p - (p/3)*3 + (s%3)*3
+    Puzzle.setvalue(r,c,' ')
+    return (r,c)
+
+main()
