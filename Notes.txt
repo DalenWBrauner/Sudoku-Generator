@@ -10,14 +10,36 @@ CURRENT INTENDED FILE LAYOUT:
 FINISHED:
 	Puzzle.py
 		Holds a functional Sudoku object.
+		def any_duplicates(theList)
+		class Sudoku(object)
+			def __init__(self, values)
+			def __str__(self)
+			def isvalid(self)
+			def setvalue(self,r,c,value)
+			def setrow(self,r,values)
+			def setcol(self,c,values)
+			def swaprow(self,r1,r2)
+			def swapcol(self,c1,c2)
+			def Mass)Replacement(self,replacements)
+		
 	Answer_Generator.py
 		Generates answer keys to Sudoku puzzles.
-		def Column_Shuffler(puzzle)
-			def Shuffle_Columns(puzzle,listOfColumns)
+		def Generate()
+		def Column_Shuffler(Puzzle)
+			def Shuffle_Columns(Puzzle,trip)
 		def Nine_Factorial()
+		
 	Answer_Unsolver.py
+		Omits boxes from Sudoku Puzzles.
+		def main()
+		def Unsolve(Puzzle,boxes)
+		def omit_f_row(Puzzle,r)
+		def omit_f_col(Puzzle,c)
+		def omit_f_sec(Puzzle,r,c)
+		
 IN PROGRESS:	
 	???
+	
 THE FUTURE:	
 	GUI.py
 		will be any and all gui interface, I guess
