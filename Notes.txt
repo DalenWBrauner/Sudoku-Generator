@@ -1,5 +1,5 @@
 Okay, so it works. But I don't like it.
-Maybe I'm just one of those guys that wants to keep adding and adding and adding and adding and adding
+Maybe I'm just one of those guys that wants to keep adding and adding
 until it's something way out of control, but I'd like to think I just
 want to improve puzzle quality and usability, and maybe even do a
 little quality control; make the program run more efficiently. It's
@@ -22,7 +22,7 @@ THE FUTURE:
 	GUI.py
 		will be any and all gui interface, I guess
 	Playable.py
-		will be the part of the project that goes to making this a playable game
+		will be the part of the project making this a playable game
 
 NEXT IMMEDIATE ASSIGNMENT:
 ???

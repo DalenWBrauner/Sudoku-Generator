@@ -93,19 +93,20 @@ class Sudoku(object):
     def isvalid(self):
         """Returns True if the puzzle is a valid Sudoku puzzle, otherwise
         Returns False."""
+        TF = True
         for row in self.row:
             if any_duplicates(row):
                 print "Duplicates in row",row
-                return False
+                TF = False
         for col in self.col:
             if any_duplicates(col):
                 print "Duplicates in col",col
-                return False
+                TF = False
         for sec in self.sec:
             if any_duplicates(sec):
                 print "Duplicates in sec",sec
-                return False    
-        return True
+                TF = False
+        return TF
 
     def setvalue(self,r,c,value):
         """Sets the value located at row number r, column number c, to the
