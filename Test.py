@@ -91,8 +91,13 @@ class TestPuzzle(unittest.TestCase):
             for x in xrange(9): CorrectCol.append(self.Seed[N+(x*9)])
             self.assertEqual(P.col[N],CorrectCol)
             
-##            # Tests that sectors were appended to correctly
-##            self.assertEqual(P.sec[N],self.Seed[Puzzle.Gsec((N/3)*3,(N%3)*3)])
+            # Tests that sectors were appended to correctly
+            A = (N/3)*27
+            B = (N%3)*3
+            self.assertEqual(P.sec[N],
+                             self.Seed[(0+A):(9+A)][(0+B):(3+B)]\
+                             + self.Seed[(9+A):(18+A)][(0+B):(3+B)]\
+                             + self.Seed[(18+A):(27+A)][(0+B):(3+B)])
 
     def test__str__(self):
         """Confirms Sudoku Puzzles are converting to strings properly."""
