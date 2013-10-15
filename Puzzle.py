@@ -25,6 +25,14 @@ def any_duplicates(theList):
         if not d.has_key(item):     d[item] = ""
         else:                       return True
     return False
+
+def get_sec(r,c):
+    """Tells you which of the 9 sectors your value is in."""
+    return (r/3)*3 + c/3
+
+def get_slt(r,c):
+    """Tells you which of the 9 slots in a sector your value is in."""
+    return c - (c/3)*3 + (r%3)*3
 #
 ##
 ### Sudoku object ahoy!
