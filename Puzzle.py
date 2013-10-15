@@ -26,6 +26,14 @@ def any_duplicates(theList):
         else:                       return True
     return False
 
+def Gsec(r,c):
+    """Returns which of the 9 sectors your value is in."""
+    return (r/3)*3 + c/3
+
+def Gslt(r,c):
+    """Returns which of the 9 slots in a sector your value is in."""
+    return c - (c/3)*3 + (r%3)*3
+
 #
 ##
 ### Sudoku object ahoy!
@@ -90,14 +98,6 @@ class Sudoku(object):
             if row == 2 or row == 5:
                 string += ("_"*25)+"\n"
         return string
-
-    def Gsec(r,c):
-        """Returns which of the 9 sectors your value is in."""
-        return (r/3)*3 + c/3
-
-    def Gslt(r,c):
-        """Returns which of the 9 slots in a sector your value is in."""
-        return c - (c/3)*3 + (r%3)*3
     
     def isvalid(self):
         """Returns True if the puzzle's values do not violate Sudoku rules,

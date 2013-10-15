@@ -1,6 +1,10 @@
 import unittest, Puzzle, Answer_Generator, Answer_Unsolver
 
 class TestPuzzle(unittest.TestCase):
+    def setUp(self):
+        self.Seed = [9,8,6,7,3,1,4,5,2,2,7,3,5,4,8,9,1,6,5,1,4,9,2,6,3,7,8,\
+                     4,6,5,2,8,7,1,3,9,1,2,8,3,5,9,6,4,7,7,3,9,6,1,4,2,8,5,\
+                     6,4,2,8,7,3,5,9,1,8,9,1,4,6,5,7,2,3,3,5,7,1,9,2,8,6,4]
     def test_any_duplicates(self):
         """Tests any_duplicates()"""
         la = [1,0]                  # No duplicates
@@ -15,21 +19,6 @@ class TestPuzzle(unittest.TestCase):
         # Makes sure it knows there are none
         self.assertFalse(Puzzle.any_duplicates(la))
         self.assertFalse(Puzzle.any_duplicates(lc))
-
-    def test_111(self):
-        """Tests basic Sudoku Object functionality."""
-        # Creates a Sudoku puzzle of all 1s.
-        v = []
-        for x in xrange(81):    v.append(1)
-        P = Puzzle.Sudoku(v)
-        # Confirms the Sudoku Puzzle is converting to a string properly.
-        Pstring =  "[ 1 1 1 | 1 1 1 | 1 1 1 ]\n[ 1 1 1 | 1 1 1 | 1 1 1 ]\n" \
-                  +"[ 1 1 1 | 1 1 1 | 1 1 1 ]\n_________________________\n" \
-                  +"[ 1 1 1 | 1 1 1 | 1 1 1 ]\n[ 1 1 1 | 1 1 1 | 1 1 1 ]\n" \
-                  +"[ 1 1 1 | 1 1 1 | 1 1 1 ]\n_________________________\n" \
-                  +"[ 1 1 1 | 1 1 1 | 1 1 1 ]\n[ 1 1 1 | 1 1 1 | 1 1 1 ]\n" \
-                  +"[ 1 1 1 | 1 1 1 | 1 1 1 ]\n"
-        self.assertEqual(str(P),Pstring)
 
     def test_break__init__(self):
         """Tests denial of invalid inputs to Sudoku objects."""
@@ -68,25 +57,35 @@ class TestPuzzle(unittest.TestCase):
 ##        self.assertRaises(TypeError,Puzzle.Sudoku(t))
 ##        self.assertRaises(TypeError,Puzzle.Sudoku(z))
 
-        def test_Gsec(self):
-            """Tests Gsec()"""
-            for r in range(3):
-                for c in range(3):    assertEquals(Puzzle.Sudoku.Gsec(r,c),1)
-                for c in range(3,6):  assertEquals(Puzzle.Sudoku.Gsec(r,c),4)
-                for c in range(6,9):  assertEquals(Puzzle.Sudoku.Gsec(r,c),7)
-            for r in range(3,6):
-                for c in range(3):    assertEquals(Puzzle.Sudoku.Gsec(r,c),2)
-                for c in range(3,6):  assertEquals(Puzzle.Sudoku.Gsec(r,c),5)
-                for c in range(6,9):  assertEquals(Puzzle.Sudoku.Gsec(r,c),8)
-            for r in range(6,9):
-                for c in range(3):    assertEquals(Puzzle.Sudoku.Gsec(r,c),3)
-                for c in range(3,6):  assertEquals(Puzzle.Sudoku.Gsec(r,c),6)
-                for c in range(6,9):  assertEquals(Puzzle.Sudoku.Gsec(r,c),9)
+    def test_Gsec(self):
+        """Tests Gsec()"""
+        for r in range(3):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),0)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),1)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),2)
+        for r in range(3,6):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),3)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),4)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),5)
+        for r in range(6,9):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),6)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),7)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),8)
 
-        def test_Gslt(self):
-            """Tests Gslt()"""
-            pass
-            
+    def test_Gslt(self):
+        """Tests Gslt()"""
+        pass
+
+    def test__init__(self):
+        P = Puzzle.Sudoku(self.Seed)
+        # Confirms the Sudoku Puzzle is converting to a string properly.
+        Pstring = "[ 9 8 6 | 7 3 1 | 4 5 2 ]\n[ 2 7 3 | 5 4 8 | 9 1 6 ]\n" \
+                  +"[ 5 1 4 | 9 2 6 | 3 7 8 ]\n_________________________\n"\
+                  +"[ 4 6 5 | 2 8 7 | 1 3 9 ]\n[ 1 2 8 | 3 5 9 | 6 4 7 ]\n"\
+                  +"[ 7 3 9 | 6 1 4 | 2 8 5 ]\n_________________________\n"\
+                  +"[ 6 4 2 | 8 7 3 | 5 9 1 ]\n[ 8 9 1 | 4 6 5 | 7 2 3 ]\n"\
+                  +"[ 3 5 7 | 1 9 2 | 8 6 4 ]\n"
+        self.assertEqual(str(P),Pstring)
 
 class TestAnswer_Generator(unittest.TestCase):
     pass

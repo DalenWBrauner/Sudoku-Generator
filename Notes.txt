@@ -11,6 +11,8 @@ FINISHED:
 	Puzzle.py
 		Holds a functional Sudoku object.
 		def any_duplicates(theList)
+		def Gsec(self,r,c)
+		def Gslt(self,r,c)
 		class Sudoku(object)
 			def __init__(self, values)
 			def __str__(self)
