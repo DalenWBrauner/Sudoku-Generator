@@ -91,8 +91,8 @@ class Sudoku(object):
         return string
 
     def isvalid(self):
-        """Returns True if the puzzle is a valid Sudoku puzzle, otherwise
-        Returns False."""
+        """Returns True if the puzzle's values do not violate Sudoku rules,
+        otherwise returns False."""
         TF = True
         for row in self.row:
             if any_duplicates(row):
