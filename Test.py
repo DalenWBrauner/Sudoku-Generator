@@ -20,6 +20,24 @@ class TestPuzzle(unittest.TestCase):
         self.assertFalse(Puzzle.any_duplicates(la))
         self.assertFalse(Puzzle.any_duplicates(lc))
 
+    def test_Gsec(self):
+        """Tests Gsec()"""
+        for r in range(3):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),0)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),1)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),2)
+        for r in range(3,6):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),3)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),4)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),5)
+        for r in range(6,9):
+            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),6)
+            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),7)
+            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),8)
+
+##    def test_Gslt(self):
+##        """Tests Gslt()"""
+
     def test_break__init__(self):
         """Tests denial of invalid inputs to Sudoku objects."""
         # Creates invalid lists for testing a list with...
@@ -54,24 +72,27 @@ class TestPuzzle(unittest.TestCase):
         self.assertRaises(TypeError,Puzzle.Sudoku,l)
         self.assertRaises(TypeError,Puzzle.Sudoku,t)
         self.assertRaises(TypeError,Puzzle.Sudoku,z)
+        
+    def test__init__(self):
+        """Confirms Sudoku Objects are created properly."""
+        P = Puzzle.Sudoku(self.Seed)
 
-    def test_Gsec(self):
-        """Tests Gsec()"""
-        for r in range(3):
-            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),0)
-            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),1)
-            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),2)
-        for r in range(3,6):
-            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),3)
-            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),4)
-            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),5)
-        for r in range(6,9):
-            for c in range(3):    self.assertEqual(Puzzle.Gsec(r,c),6)
-            for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),7)
-            for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),8)
-
-##    def test_Gslt(self):
-##        """Tests Gslt()"""
+        # Tests the matrix was appended to correctly
+        for N in xrange(81):
+            self.assertEqual(P.M[str(N/9)+","+str(N%9)],self.Seed[N])
+        
+        for N in xrange(9):
+            # Tests that rows were appended to correctly
+            CorrectRow = self.Seed[N*9:N*9 +9]
+            self.assertEqual(P.row[N],CorrectRow)
+            
+            # Tests that columns were appended to correctly
+            CorrectCol = []
+            for x in xrange(9): CorrectCol.append(self.Seed[N+(x*9)])
+            self.assertEqual(P.col[N],CorrectCol)
+            
+##            # Tests that sectors were appended to correctly
+##            self.assertEqual(P.sec[N],self.Seed[Puzzle.Gsec((N/3)*3,(N%3)*3)])
 
     def test__str__(self):
         """Confirms Sudoku Puzzles are converting to strings properly."""
