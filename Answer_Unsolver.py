@@ -10,9 +10,9 @@ import Answer_Generator
 from random import randint
 
 def main():
-    """Asks the user for the number of numbers they'd like to be
-    omitted from their Sudoku Puzzle, then calls functions to generate a
-    puzzle at random, omit that many, and then return it to the user."""
+    """Asks the user for the number of numbers they'd like omitted from
+    their Sudoku Puzzle, then calls functions to generate a puzzle at
+    random, omit that many, and then return it to the user."""
     
     print "How many boxes would you like missing from your puzzle?"
     while True:
@@ -57,7 +57,7 @@ def Unsolve(Puzzle,boxes):
                 else:               (r,c) = omit_f_sec(Puzzle,r,c)
                 NoSuccess = False
             
-            # If omitting fails, incriment rcs by 1 to try something different.
+            # If omitting fails, incriment rcs by 1 to try something new.
             except ValueError:
                 rcs = (rcs + 1)%3
 
@@ -85,8 +85,8 @@ def Unsolve(Puzzle,boxes):
     return Puzzle
 
 def omit_f_row(Puzzle,r):
-    """Omits a random nonempty value from the row provided and returns the omitted
-    value's location."""    
+    """Omits a random nonempty value from the row provided and returns the
+    omitted value's location."""    
     # Creates a list with the positions of all nonempty values in the row
     nonempty = []
     for v in xrange(9):
@@ -103,8 +103,8 @@ def omit_f_row(Puzzle,r):
 
 
 def omit_f_col(Puzzle,c):
-    """Omits a random nonempty value from the column provided and returns the omitted
-    value's location."""
+    """Omits a random nonempty value from the col provided and returns the
+    omitted value's location."""
     # Creates a list with the positions of all nonempty values in the column
     nonempty = []
     for v in xrange(9):
@@ -121,8 +121,8 @@ def omit_f_col(Puzzle,c):
     
 
 def omit_f_sec(Puzzle,r,c):
-    """Omits a random nonempty value from the sector provided and returns the omitted
-    value's location."""
+    """Omits a random nonempty value from the sec provided and returns the
+    omitted value's location."""
     # The code is largely the same, comments observe differences
     nonempty = []
     index = 0                           # index being the position within the sector

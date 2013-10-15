@@ -9,7 +9,7 @@ from Puzzle import Sudoku
 from random import randint
 
 def Generate():
-    """Call this, an a randomly generated Answer Sheet shall be returned."""
+    """Returns a randomly generated Answer Sheet."""
     return Column_Shuffler(Nine_Factorial())
 
 def Nine_Factorial():

@@ -116,7 +116,8 @@ class Sudoku(object):
         self.col[c][r] = value
         self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = value
 
-    def setrow(self,r,values):       
+    def setrow(self,r,values):
+        """Sets the values of row r to the values provided."""
         if len(values) != 9:
             raise TypeError("Rows require exactly 9 values.")
         
@@ -127,6 +128,7 @@ class Sudoku(object):
             self.sec[(r/3)*3 + c/3][c - (c/3)*3 + (r%3)*3] = values[c]
 
     def setcol(self,c,values):
+        """Sets the values of col c to the values provided."""
         if len(values) != 9:
             raise TypeError("Columns require exactly 9 values.")
         
