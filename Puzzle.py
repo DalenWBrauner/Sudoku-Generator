@@ -3,14 +3,6 @@
 [Author]            Dalen W. Brauner
 [DLM]               7/22/2013   10:04 PM
 [Purpose]           To allow for the creation and manipulation of Sudoku Puzzles.
-
-                    
-Here are some fun notes about sectors:
-    Given a row number r, and column number c:
-    (r/3)*3 + c/3
-        tells you which of the 9 sectors your value is in.
-    c - (c/3)*3 + (r%3)*3
-        tells you which of the 9 slots in a sector your value is in.
 """
 
 #

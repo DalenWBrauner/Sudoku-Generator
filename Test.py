@@ -22,40 +22,38 @@ class TestPuzzle(unittest.TestCase):
 
     def test_break__init__(self):
         """Tests denial of invalid inputs to Sudoku objects."""
-        # I can't test this until THIS ONE line of code works
-        # self.assertRaises(IndexError,[].pop())
-##        # Creates invalid lists for testing a list with...
-##        a = []  # not enough values
-##        b = []  # too many values
-##        c = []  # nothing in it
-##        f = []  # floats
-##        s = []  # strings
-##        b = []  # booleans
-##        l = []  # lists
-##        t = []  # tuples
-##        z = []  # a list
-##        # Fills these lists
-##        for x in xrange(81):
-##            a.append(7)
-##            b.append(7)
-##            f.append(float(x))
-##            s.append(str(x))
-##            b.append(True)
-##            l.append([x])
-##            t.append((x))
-##            z.append(x)
-##        b.append(a.pop())
-##        # Tests that Sudoku objects won't accept these as valid input
-##        self.assertRaises(TypeError,Puzzle.Sudoku()) # Tests
-##        self.assertRaises(TypeError,Puzzle.Sudoku(a))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(b))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(c))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(f))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(s))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(b))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(l))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(t))
-##        self.assertRaises(TypeError,Puzzle.Sudoku(z))
+        # Creates invalid lists for testing a list with...
+        a = []  # not enough values
+        b = []  # too many values
+        c = []  # nothing in it
+        f = []  # floats
+        s = []  # strings
+        b = []  # booleans
+        l = []  # lists
+        t = []  # tuples
+        z = []  # a list
+        # Fills these lists
+        for x in xrange(81):
+            a.append(7)
+            b.append(7)
+            f.append(float(x))
+            s.append(str(x))
+            b.append(True)
+            l.append([x])
+            t.append((x))
+            z.append(x)
+        b.append(a.pop())
+        # Tests that Sudoku objects won't accept these as valid input
+        self.assertRaises(TypeError,Puzzle.Sudoku) # Tests
+        self.assertRaises(TypeError,Puzzle.Sudoku,a)
+        self.assertRaises(TypeError,Puzzle.Sudoku,b)
+        self.assertRaises(TypeError,Puzzle.Sudoku,c)
+        self.assertRaises(TypeError,Puzzle.Sudoku,f)
+        self.assertRaises(TypeError,Puzzle.Sudoku,s)
+        self.assertRaises(TypeError,Puzzle.Sudoku,b)
+        self.assertRaises(TypeError,Puzzle.Sudoku,l)
+        self.assertRaises(TypeError,Puzzle.Sudoku,t)
+        self.assertRaises(TypeError,Puzzle.Sudoku,z)
 
     def test_Gsec(self):
         """Tests Gsec()"""
@@ -72,25 +70,33 @@ class TestPuzzle(unittest.TestCase):
             for c in range(3,6):  self.assertEqual(Puzzle.Gsec(r,c),7)
             for c in range(6,9):  self.assertEqual(Puzzle.Gsec(r,c),8)
 
-    def test_Gslt(self):
-        """Tests Gslt()"""
-        pass
+##    def test_Gslt(self):
+##        """Tests Gslt()"""
 
-    def test__init__(self):
+    def test__str__(self):
+        """Confirms Sudoku Puzzles are converting to strings properly."""
         P = Puzzle.Sudoku(self.Seed)
-        # Confirms the Sudoku Puzzle is converting to a string properly.
+        G = Puzzle.Sudoku(self.Seed)
+        G.row[0][0] = ' '
         Pstring = "[ 9 8 6 | 7 3 1 | 4 5 2 ]\n[ 2 7 3 | 5 4 8 | 9 1 6 ]\n" \
                   +"[ 5 1 4 | 9 2 6 | 3 7 8 ]\n_________________________\n"\
                   +"[ 4 6 5 | 2 8 7 | 1 3 9 ]\n[ 1 2 8 | 3 5 9 | 6 4 7 ]\n"\
                   +"[ 7 3 9 | 6 1 4 | 2 8 5 ]\n_________________________\n"\
                   +"[ 6 4 2 | 8 7 3 | 5 9 1 ]\n[ 8 9 1 | 4 6 5 | 7 2 3 ]\n"\
                   +"[ 3 5 7 | 1 9 2 | 8 6 4 ]\n"
-        self.assertEqual(str(P),Pstring)
+        Gstring = "[   8 6 | 7 3 1 | 4 5 2 ]\n[ 2 7 3 | 5 4 8 | 9 1 6 ]\n" \
+                  +"[ 5 1 4 | 9 2 6 | 3 7 8 ]\n_________________________\n"\
+                  +"[ 4 6 5 | 2 8 7 | 1 3 9 ]\n[ 1 2 8 | 3 5 9 | 6 4 7 ]\n"\
+                  +"[ 7 3 9 | 6 1 4 | 2 8 5 ]\n_________________________\n"\
+                  +"[ 6 4 2 | 8 7 3 | 5 9 1 ]\n[ 8 9 1 | 4 6 5 | 7 2 3 ]\n"\
+                  +"[ 3 5 7 | 1 9 2 | 8 6 4 ]\n"
+        self.assertEqual(   str(P),Pstring)
+        self.assertEqual(   str(G),Gstring)
+        self.assertNotEqual(str(P),Gstring)
+        self.assertNotEqual(str(G),Pstring)
 
-class TestAnswer_Generator(unittest.TestCase):
-    pass
+##class TestAnswer_Generator(unittest.TestCase):
 
-class TestAnswer_Unsolver(unittest.TestCase):
-    pass
+##class TestAnswer_Unsolver(unittest.TestCase):
 
 unittest.main()
