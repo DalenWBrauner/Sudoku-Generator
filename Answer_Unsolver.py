@@ -25,10 +25,12 @@ def main():
             Omissions = input("")
         if Omissions == 0:
             print "Oh, you'd like an answer sheet? Here you go!"
+            Puzzle = Answer_Generator.Generate()
         elif Omissions == 81:
             print "Oh, you must be done! We hope you enjoyed the puzzles!"
             return
-        Puzzle = Unsolve(Answer_Generator.Generate(),Omissions)
+        else:
+            Puzzle = Unsolve(Answer_Generator.Generate(),Omissions)
         print Puzzle
         print "How many boxes would you like missing from your next puzzle?"
 
