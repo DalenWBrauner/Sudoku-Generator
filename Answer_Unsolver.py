@@ -144,4 +144,4 @@ def omit_f_sec(Puzzle,r,c):
     Puzzle.setvalue(r,c,' ')
     return (r,c)
 
-main()
+if __name__ == '__main__':  main()
