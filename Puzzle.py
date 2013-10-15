@@ -26,13 +26,6 @@ def any_duplicates(theList):
         else:                       return True
     return False
 
-def get_sec(r,c):
-    """Tells you which of the 9 sectors your value is in."""
-    return (r/3)*3 + c/3
-
-def get_slt(r,c):
-    """Tells you which of the 9 slots in a sector your value is in."""
-    return c - (c/3)*3 + (r%3)*3
 #
 ##
 ### Sudoku object ahoy!
@@ -98,6 +91,14 @@ class Sudoku(object):
                 string += ("_"*25)+"\n"
         return string
 
+    def Gsec(r,c):
+        """Returns which of the 9 sectors your value is in."""
+        return (r/3)*3 + c/3
+
+    def Gslt(r,c):
+        """Returns which of the 9 slots in a sector your value is in."""
+        return c - (c/3)*3 + (r%3)*3
+    
     def isvalid(self):
         """Returns True if the puzzle's values do not violate Sudoku rules,
         otherwise returns False."""
