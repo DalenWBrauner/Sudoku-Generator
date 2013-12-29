@@ -2,7 +2,8 @@
 [Name]              Puzzle.py
 [Author]            Dalen W. Brauner
 [DLM]               7/22/2013   10:04 PM
-[Purpose]           To allow for the creation and manipulation of Sudoku Puzzles.
+[Purpose]           To allow for the creation and manipulation of Sudoku
+                    Puzzles.
 """
 
 #
@@ -90,24 +91,6 @@ class Sudoku(object):
             if row == 2 or row == 5:
                 string += ("_"*25)+"\n"
         return string
-    
-    def isvalid(self):
-        """Returns True if the puzzle's values do not violate Sudoku rules,
-        otherwise returns False."""
-        TF = True
-        for row in self.row:
-            if any_duplicates(row):
-                print "Duplicates in row",row
-                TF = False
-        for col in self.col:
-            if any_duplicates(col):
-                print "Duplicates in col",col
-                TF = False
-        for sec in self.sec:
-            if any_duplicates(sec):
-                print "Duplicates in sec",sec
-                TF = False
-        return TF
 
     def setvalue(self,r,c,value):
         """Sets the value located at row number r, column number c, to the
@@ -158,14 +141,30 @@ class Sudoku(object):
         self.setcol(c2,newc2)
 
     def Mass_Replacement(self,replacements):
-        """Replaces all 1s with the first value in the list, all 2s with the second, etc."""
+        """Replaces all 1s with the first value in the list, all 2s with the
+        second, etc."""
         for c in xrange(9):
             for r in xrange(9):
                 self.setvalue(r,c,replacements[(self.M[str(r)+","+str(c)])-1])
 
-    #
-    ##
-    ### For confirmation
+    def isvalid(self):
+        """Returns True if the puzzle's values do not violate Sudoku rules,
+        otherwise returns False."""
+        TF = True
+        for row in self.row:
+            if any_duplicates(row):
+                print "Duplicates in row",row
+                TF = False
+        for col in self.col:
+            if any_duplicates(col):
+                print "Duplicates in col",col
+                TF = False
+        for sec in self.sec:
+            if any_duplicates(sec):
+                print "Duplicates in sec",sec
+                TF = False
+        return TF
+    
     def isconsistent(self):
         """Returns True if the puzzle's values in self.row/col/sec match the
         values in self.M, otherwise returns False."""
@@ -181,3 +180,12 @@ class Sudoku(object):
                     print "self.sec ==",self.sec[((r/3)*3)+(c/3)][c - (c/3)*3 + (r%3)*3]
         return TF
 
+    def issolvable(self):
+        """Returns True if the puzzle can be solved as-is, otherwise returns
+        False."""
+        pass
+
+    def isunique(self):
+        """Returns True if there is only one solution for the puzzle as-is,
+        otherwise returns False."""
+        pass
