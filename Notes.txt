@@ -16,13 +16,16 @@ FINISHED:
 		class Sudoku(object)
 			def __init__(self, values)
 			def __str__(self)
-			def isvalid(self)
 			def setvalue(self,r,c,value)
 			def setrow(self,r,values)
 			def setcol(self,c,values)
 			def swaprow(self,r1,r2)
 			def swapcol(self,c1,c2)
-			def Mass)Replacement(self,replacements)
+			def Mass_Replacement(self,replacements)
+			def isvalid(self)
+			def isconsistent(self)
+			def issolvable(self)
+			def isunique(self)
 		
 	Answer_Generator.py
 		Generates answer keys to Sudoku puzzles.
@@ -40,16 +43,18 @@ FINISHED:
 		def omit_f_sec(Puzzle,r,c)
 		
 IN PROGRESS:	
-	???
+	Writing issolvable() to determine whether or not a puzzle can be solved
+	Writing isunique() to determine whether or not a puzzle's solution is unique
 	
 THE FUTURE:	
 	GUI.py
-		will be any and all gui interface, I guess
+		will be any and all gui interface
 	Playable.py
-		will be the part of the project making this a playable game
+		will be any and all parts of the project making this a playable game
 
 NEXT IMMEDIATE ASSIGNMENT:
-???
+	Rewrite the unsolver so all even removals are "rotationally symmetric"
+	See "Entry Elimination" in http://www.longwood.edu/assets/mathematics/Team2975_ProblemB.pdf
 
 	
 FUN FACT:
