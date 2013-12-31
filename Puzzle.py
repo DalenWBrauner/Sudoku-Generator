@@ -1,7 +1,7 @@
 """
 [Name]              Puzzle.py
 [Author]            Dalen W. Brauner
-[DLM]               7/22/2013   10:04 PM
+[DLM]               12/31/2013   01:54 PM
 [Purpose]           To allow for the creation and manipulation of Sudoku
                     Puzzles.
 """
@@ -13,11 +13,8 @@
 
 def any_duplicates(theList):
     """Checks if there are any duplicates in a list."""
-    d = {}
-    for item in theList:
-        if not d.has_key(item):     d[item] = ""
-        else:                       return True
-    return False
+    s = set(theList)
+    return len(s) != len(theList)
 
 def Gsec(r,c):
     """Returns which of the 9 sectors your value is in."""
@@ -183,6 +180,7 @@ class Sudoku(object):
     def issolvable(self):
         """Returns True if the puzzle can be solved as-is, otherwise returns
         False."""
+        
         pass
 
     def isunique(self):
