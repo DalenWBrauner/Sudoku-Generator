@@ -1,12 +1,7 @@
-Okay, so it works. But I don't like it.
-Maybe I'm just one of those guys that wants to keep adding and adding
-until it's something way out of control, but I'd like to think I just
-want to improve puzzle quality and usability, and maybe even do a
-little quality control; make the program run more efficiently. It's
-pretty ugly where it stands now, I would think. After all, I DID just
-implement the first solution to each problem I thought of, and either
-tweaked them until they worked or go with a second solution.
-CURRENT INTENDED FILE LAYOUT:
+It works an I like it! Of course, there's always more to do.
+	I just recently rewrote the unsolver so all even removals are "rotationally symmetric."
+	See "Entry Elimination" in http://www.longwood.edu/assets/mathematics/Team2975_ProblemB.pdf
+
 FINISHED:
 	Puzzle.py
 		Holds a functional Sudoku object.
@@ -24,8 +19,6 @@ FINISHED:
 			def Mass_Replacement(self,replacements)
 			def isvalid(self)
 			def isconsistent(self)
-			def issolvable(self)
-			def isunique(self)
 		
 	Answer_Generator.py
 		Generates answer keys to Sudoku puzzles.
@@ -38,24 +31,22 @@ FINISHED:
 		Omits boxes from Sudoku Puzzles.
 		def main()
 		def Unsolve(Puzzle,boxes)
-		def omit_f_row(Puzzle,r)
-		def omit_f_col(Puzzle,c)
-		def omit_f_sec(Puzzle,r,c)
 		
-IN PROGRESS:	
-	Writing issolvable() to determine whether or not a puzzle can be solved
-	Writing isunique() to determine whether or not a puzzle's solution is unique
+IN PROGRESS:
+	N/A	
 	
 THE FUTURE:	
 	GUI.py
 		will be any and all gui interface
 	Playable.py
 		will be any and all parts of the project making this a playable game
+	issolvable()
+		Determine whether or not a puzzle can be solved given its current blanks
+	isunique()
+		Determine whether or not a puzzle can be solved with strictly one solution given its current blanks
 
 NEXT IMMEDIATE ASSIGNMENT:
-	Rewrite the unsolver so all even removals are "rotationally symmetric"
-	See "Entry Elimination" in http://www.longwood.edu/assets/mathematics/Team2975_ProblemB.pdf
-
+	N/A
 	
 FUN FACT:
 The sudoku puzzle generation process is as follows:

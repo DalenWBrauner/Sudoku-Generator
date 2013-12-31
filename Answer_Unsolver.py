@@ -34,7 +34,7 @@ def main():
         print Puzzle
         print "How many boxes would you like missing from your next puzzle?"
 
-def Unsolve(Puzzle,boxes):
+def Unsolve_old(Puzzle,boxes):
     """Given an answer key and a number of boxes, returns a puzzle missing
     precisely that many."""
     # Picks the first victim at random.
@@ -143,5 +143,43 @@ def omit_f_sec(Puzzle,r,c):
     c = p - (p/3)*3 + (s%3)*3
     Puzzle.setvalue(r,c,' ')
     return (r,c)
+
+def Unsolve_random(Puzzle, boxes):
+    """Given an answer key and a number of boxes, returns a puzzle missing
+    precisely that many."""
+    filled = [(r,c) for r in xrange(9) for c in xrange(9) ]
+    while len(filled) > (81-boxes):
+        removed = filled.pop(randint(0,len(filled)-1))
+        Puzzle.setvalue(removed[0],removed[1],' ')
+    return Puzzle
+
+def Unsolve(Puzzle, boxes):
+    """Given an answer key and a number of boxes, returns a puzzle missing
+    precisely that many."""
+    # Creates a list of every position still filled in
+    filled = [(r,c) for r in xrange(9) for c in xrange(9) ]
+
+    # While there are still boxes to remove
+    while len(filled) != (81-boxes):
+
+        # If there wasn't a previous odd-numbered removal,
+        if len(filled)%2 == 1:
+            # set a random filled value to be removed
+            removed = filled.pop(randint(0,len(filled)-1))
+
+        # Otherwise, grab the 'rotationally-symmetrical' value
+        else:
+            symmy = (8-removed[0],8-removed[1])
+            # If it hasn't yet been removed, set it to be
+            if symmy in filled:
+                filled.remove(symmy)
+                removed = symmy
+            # Otherwise set a random filled value to be removed
+            else:
+                removed = filled.pop(randint(0,len(filled)-1))
+
+        # Remove the set value
+        Puzzle.setvalue(removed[0],removed[1],' ')
+    return Puzzle
 
 if __name__ == '__main__':  main()
